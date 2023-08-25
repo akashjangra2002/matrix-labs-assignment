@@ -1,3 +1,8 @@
+:root{
+  --poppins: 'Poppins', sans-serif;
+  --pink: #F30050;
+}
+
 .main{
   height: 100vh;
   background-color: rgb(255 255 255 / 12%);
@@ -19,6 +24,8 @@ section.lower{
 }
 
 .sidebar{
+  --left-spacing: 1.5rem;
+
   height: 100%;
   width: 20vw;
   border-radius: 0rem 2rem 0rem 0rem;
@@ -26,21 +33,73 @@ section.lower{
   color: white;
 }
 
-.sidebar .option{
-  text-align: center;
-  padding: 1rem;
+.sidebar .logo{
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-left: var(--left-spacing);
 }
+
+.sidebar .logo:hover{
+  cursor: pointer;
+}
+
+.logo .logo-text{
+  padding-top: 10px;
+}
+.sidebar .flex{
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar .options{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sidebar .option{
+  display: flex;
+  text-align: center;
+  gap: 1rem;
+  padding: 0.8rem;
+  padding-left: var(--left-spacing);
+}
+
+.sidebar .option:hover{
+  cursor: pointer;
+}
+
+.sidebar .option > span{
+  padding-top: 2px;
+}
+
+.sidebar .option.selected{
+  background-color: var(--pink);
+}
+
+.sidebar .social-media{
+  display: flex;
+  gap: 1rem;
+  padding-left: var(--left-spacing);
+  margin-bottom: 1rem;
+}
+
 .content{
   height: 100%;
   width: 100%;
 
   color: white;
+  padding: 0 2rem;
+  overflow-y: scroll;
 }
 
 .content .head{
   display: flex;
   justify-content: space-between;
-  padding: 1rem 3rem;
+  padding: 1rem 1rem;
 }
 
 .content .head .connect{
@@ -52,9 +111,52 @@ section.lower{
   border-radius: 1.25rem;
   background: linear-gradient(131deg, #7C0F35 0%, #581266 100%);
 }
+
+.content .results{
+  font-family: var(--poppins);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.content .results .result > a{
+  width: 100%;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.content .results .result > a .card{
+  width: 21%;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #390554;
+} 
+
+.content .results .result>a .card .data{
+  font-size: 0.8rem;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}                        
+
+.content .results .result>a .card .data > .key{
+  width: fit-content;
+  font-weight: 500;
+}
+
+.content .results .result>a .card .data > .value {
+  width: fit-content;
+  font-weight: 300;
+  overflow: hidden;
+}
+
 .footer{
   height: 100%;
-  background: #F30050;
+  background: var(--pink);
 }
 
 
