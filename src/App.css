@@ -1,0 +1,60 @@
+.main{
+  height: 100vh;
+  background-color: rgb(255 255 255 / 12%);
+  background-image: url('./bg-image.png');
+  background-size: contain;
+  background-blend-mode: overlay;
+
+  --highlight: 1px solid limegreen;
+  --height-upper: 92vh;
+}
+
+section.upper{
+  height: var(--height-upper);
+  display: flex;
+}
+
+section.lower{
+  height: calc(100vh - var(--height-upper));
+}
+
+.sidebar{
+  height: 100%;
+  width: 20vw;
+  border-radius: 0rem 2rem 0rem 0rem;
+  background: #292929;
+  color: white;
+}
+
+.sidebar .option{
+  text-align: center;
+  padding: 1rem;
+}
+.content{
+  height: 100%;
+  width: 100%;
+
+  color: white;
+}
+
+.content .head{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+}
+
+.content .head .connect{
+  width: 6.8rem;
+  height: 2.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.25rem;
+  background: linear-gradient(131deg, #7C0F35 0%, #581266 100%);
+}
+.footer{
+  height: 100%;
+  background: #F30050;
+}
+
+
