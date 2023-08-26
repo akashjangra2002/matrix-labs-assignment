@@ -154,6 +154,38 @@ section.lower{
   word-break: break-all;
 }
 
+.search{
+  height: 2.5rem;
+  width: 25rem;
+  position: relative;
+}
+
+.search input{
+  height: 100%;
+  width: 87%;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: white;
+  outline: 1px solid #FFF;
+  background: transparent;
+  padding: 0 1rem;
+  padding-right: 13%; /*for search svg*/
+  border-radius: 20px;
+}
+
+.search input::placeholder{
+  color: white;
+}
+
+.search .search-svg{
+  position: absolute;
+  right: -1rem;
+  top: 0;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  overflow: hidden;
+}
+
 .footer{
   height: 100%;
   background: var(--pink);

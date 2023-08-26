@@ -7,7 +7,7 @@ import PairSvg from "./svg/pair.svg";
 import FacebookSvg from "./svg/facebook.svg";
 import LinkedinSvg from "./svg/linkedin.svg";
 import TwitterSvg from "./svg/twitter.svg";
-
+import SearchSvg from "./svg/search.svg";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -127,10 +127,11 @@ const App = () => {
                       <div className="search">
                           <input
                               type="text"
+                              placeholder='Search'
                               value={searchQuery}
                               onChange={(e) => setSearchQuery(e.target.value)}
                           />
-                          <button onClick={handleSearch}>Search</button>
+                          <span className='search-svg   ' onClick={handleSearch}><img src={SearchSvg} alt='search svg' /></span>
                       </div>
                       <div className="connect">Connect</div>
                   </div>
