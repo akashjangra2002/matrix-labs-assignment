@@ -43,14 +43,6 @@ const App = () => {
   useEffect(() => {
     loadData();
   }, [])
-
-  useEffect(() => {
-      if(addressOption === 'pair-address') {
-        setAddressData(pairAddress);
-      } else if(addressOption === 'token-address'){
-        setAddressData(tokenAddress);
-      }
-  }, [addressOption]);
   
   return (
       <main className="main">
@@ -78,7 +70,10 @@ const App = () => {
                                       ? "selected"
                                       : ""
                               }`}
-                              onClick={() => setAddressOption("token-address")}
+                              onClick={() => {
+                                  setAddressOption("token-address");
+                                  setAddressData(tokenAddress);
+                              }}
                           >
                               <img
                                   className="token-svg"
@@ -93,7 +88,10 @@ const App = () => {
                                       ? "selected"
                                       : ""
                               }`}
-                              onClick={() => setAddressOption("pair-address")}
+                              onClick={() => {
+                                  setAddressOption("pair-address");
+                                  setAddressData(pairAddress);
+                              }}
                           >
                               <img
                                   className="pair-svg"
@@ -150,24 +148,36 @@ const App = () => {
                                                   Basic Info
                                               </h3>
                                               <p className="data">
-                                                  <span className='key'>Pair created at</span>
-                                                  <span className='value'                                                                           >
+                                                  <span className="key">
+                                                      Pair created at
+                                                  </span>
+                                                  <span className="value">
                                                       {el.pairCreatedAt}
                                                   </span>
                                               </p>
                                               <p className="data">
-                                                  <span className='key'>Symbol</span>
-                                                  <span className='value' >
+                                                  <span className="key">
+                                                      Symbol
+                                                  </span>
+                                                  <span className="value">
                                                       {el.baseToken.symbol}
                                                   </span>
                                               </p>
                                               <p className="data">
-                                                  <span className='key'>Dex Id</span>
-                                                  <span className='value'>{el.dexId}</span>
+                                                  <span className="key">
+                                                      Dex Id
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.dexId}
+                                                  </span>
                                               </p>
                                               <p className="data">
-                                                  <span className='key'>Pair Address</span>
-                                                  <span className='value'>{el.pairAddress}</span>
+                                                  <span className="key">
+                                                      Pair Address
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.pairAddress}
+                                                  </span>
                                               </p>
                                           </div>
                                           <div className="card base-token">
@@ -176,16 +186,28 @@ const App = () => {
                                               </h3>
 
                                               <p className="data">
-                                                  <span className='key'>Name</span>
-                                                  <span className='value'>{el.baseToken.name}</span>
+                                                  <span className="key">
+                                                      Name
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.baseToken.name}
+                                                  </span>
                                               </p>
                                               <p className="data">
-                                                  <span className='key'>Symbol</span>
-                                                  <span className='value'>{el.baseToken.symbol}</span>
+                                                  <span className="key">
+                                                      Symbol
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.baseToken.symbol}
+                                                  </span>
                                               </p>
                                               <p className="data">
-                                                  <span className='key'>Address</span>
-                                                  <span className='value'>{el.baseToken.address}</span>
+                                                  <span className="key">
+                                                      Address
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.baseToken.address}
+                                                  </span>
                                               </p>
                                           </div>
                                           <div className="card quote-token">
@@ -193,29 +215,47 @@ const App = () => {
                                                   Quote Token
                                               </h3>
                                               <p className="data">
-                                                  <span className='key'>Name</span>
-                                                  <span className='value'>{el.quoteToken.name}</span>
+                                                  <span className="key">
+                                                      Name
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.quoteToken.name}
+                                                  </span>
                                               </p>
                                               <p className="data">
-                                                  <span className='key'>Symbol</span>
-                                                  <span className='value'>{el.quoteToken.symbol}</span>
+                                                  <span className="key">
+                                                      Symbol
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.quoteToken.symbol}
+                                                  </span>
                                               </p>
                                               <p className="data">
-                                                  <span className='key'>Address</span>
-                                                  <span className='value'>{el.quoteToken.address}</span>
+                                                  <span className="key">
+                                                      Address
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.quoteToken.address}
+                                                  </span>
                                               </p>
                                           </div>
                                           <div className="card price">
-                                              <h3 className="title">
-                                                  Price
-                                              </h3>
+                                              <h3 className="title">Price</h3>
                                               <p className="data">
-                                                  <span className='key'>Price Native</span>
-                                                  <span className='value'>{el.priceNative}</span>
+                                                  <span className="key">
+                                                      Price Native
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.priceNative}
+                                                  </span>
                                               </p>
                                               <p className="data">
-                                                  <span className='key'>Price USD</span>
-                                                  <span className='value'>{el.priceUsd}</span>
+                                                  <span className="key">
+                                                      Price USD
+                                                  </span>
+                                                  <span className="value">
+                                                      {el.priceUsd}
+                                                  </span>
                                               </p>
                                           </div>
                                       </a>
