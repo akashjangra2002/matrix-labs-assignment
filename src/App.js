@@ -42,18 +42,17 @@ const App = () => {
         }
     };
     const handleSearch = async () => {
-        try {
-            const response = await fetch(
-                `https://api.dexscreener.com/latest/dex/search/?q=${searchQuery}`
-            );
-            const data = await response.json();
-            //   setSearchResults(data.results);
-        } catch (error) {
-            console.error("Error fetching results:", error);
-        }
+        // try {
+        //     const response = await fetch(
+        //         `https://api.dexscreener.com/latest/dex/search/?q=${searchQuery}`
+        //     );
+        //     const data = await response.json();
+        //     //   setSearchResults(data.results);
+        // } catch (error) {
+        //     console.error("Error fetching results:", error);
+        // }
     };
 
-    /* eslint-disable no-console */
     /*eslint-disable-next-line*/
     useEffect(() => {
         /*eslint-disable-next-line*/
