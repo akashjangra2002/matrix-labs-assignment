@@ -22,16 +22,18 @@ const App = () => {
             let response = await fetch(pairUrl);
             if (response) {
                 const data = await response.json();
-                setPairAddress(data?.pairs);
-                console.log(data?.pairs);
+                setPairAddress(
+                    data?.pairs.length > 10
+                        ? data.pairs.splice(0, 10)
+                        : data.pairs
+                ); //limit to 10 results only
             }
             const tokenUrl =
                 "https://api.dexscreener.com/latest/dex/search/?q=token";
             response = await fetch(tokenUrl);
             if (response) {
                 const data = await response.json();
-                setTokenAddress(data?.pairs);
-                console.log(data?.pairs);
+                setTokenAddress(data?.pairs.length > 10? data.pairs.splice(0, 10): data.pairs); //limit to 10 results only
             }
 
             if (addressData?.length === 0) setAddressData(tokenAddress); //by default
@@ -46,7 +48,6 @@ const App = () => {
             );
             const data = await response.json();
             //   setSearchResults(data.results);
-            console.log("data is -> ", data);
         } catch (error) {
             console.error("Error fetching results:", error);
         }
