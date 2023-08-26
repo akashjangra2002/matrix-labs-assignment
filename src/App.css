@@ -150,9 +150,8 @@ section.lower{
 }
 
 .content .results .result>a .card .data > .value {
-  width: fit-content;
   font-weight: 300;
-  overflow: hidden;
+  word-break: break-all;
 }
 
 .footer{

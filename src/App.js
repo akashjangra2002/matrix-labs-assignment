@@ -11,7 +11,7 @@ import TwitterSvg from "./svg/twitter.svg";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [addressOption, setAddressOption] = useState("");
+  const [addressOption, setAddressOption] = useState("token-address");
   const [addressData, setAddressData] = useState([]);
   const [pairAddress, setPairAddress] = useState([]);
   const [tokenAddress, setTokenAddress] = useState([]);
@@ -33,6 +33,7 @@ const App = () => {
         setTokenAddress(data?.pairs);
         console.log(data?.pairs);
     }
+
 }
   const handleSearch = () => {
       // Implement your search logic here using the searchQuery state.
@@ -41,8 +42,9 @@ const App = () => {
 
   //load data at the start of application
   useEffect(() => {
-    loadData();
-  }, [])
+      loadData();
+      setAddressData(tokenAddress); //by default
+  }, [tokenAddress])
   
   return (
       <main className="main">
