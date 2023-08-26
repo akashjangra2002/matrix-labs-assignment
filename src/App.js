@@ -17,34 +17,46 @@ const App = () => {
   const [tokenAddress, setTokenAddress] = useState([]);
 
   const loadData = async () => {
-    const pairUrl =
-        "https://api.dexscreener.com/latest/dex/pairs/bsc/0x7213a321F1855CF1779f42c0CD85d3D95291D34C,0x16b9a82891338f9ba80e2d6970fdda79d1eb0dae";
-    let response = await fetch(pairUrl);
-    if(response){
-        const data = await response.json();
-        setPairAddress(data?.pairs);
-        console.log(data?.pairs);
-    }
-    const tokenUrl =
-        "https://api.dexscreener.com/latest/dex/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8,0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
-    response = await fetch(tokenUrl);
-    if (response) {
-        const data = await response.json();
-        setTokenAddress(data?.pairs);
-        console.log(data?.pairs);
-    }
+    try {
+         const pairUrl =
+             "https://api.dexscreener.com/latest/dex/pairs/bsc/0x7213a321F1855CF1779f42c0CD85d3D95291D34C,0x16b9a82891338f9ba80e2d6970fdda79d1eb0dae";
+         let response = await fetch(pairUrl);
+         if (response) {
+             const data = await response.json();
+             setPairAddress(data?.pairs);
+             console.log(data?.pairs);
+         }
+         const tokenUrl =
+             "https://api.dexscreener.com/latest/dex/tokens/0x2170Ed0880ac9A755fd29B2688956BD959F933F8,0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
+         response = await fetch(tokenUrl);
+         if (response) {
+             const data = await response.json();
+             setTokenAddress(data?.pairs);
+             console.log(data?.pairs);
+         }
 
+         if(addressData?.length === 0)
+            setAddressData(tokenAddress); //by default
+    } catch (error) {
+        console.error('Error fetching results: ', error);
+    }
 }
-  const handleSearch = () => {
-      // Implement your search logic here using the searchQuery state.
-      console.log("Search query:", searchQuery);
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(
+          `https://api.dexscreener.com/latest/dex/search/?q=:${searchQuery}`
+      );
+      const data = await response.json();
+    //   setSearchResults(data.results);
+      console.log('data is -> ', data)
+    } catch (error) {
+      console.error('Error fetching results:', error);
+    }
   };
 
-  //load data at the start of application
   useEffect(() => {
       loadData();
-      setAddressData(tokenAddress); //by default
-  }, [tokenAddress])
+  }, [])
   
   return (
       <main className="main">
@@ -74,7 +86,7 @@ const App = () => {
                               }`}
                               onClick={() => {
                                   setAddressOption("token-address");
-                                  setAddressData(tokenAddress);
+                                  setAddressData([...tokenAddress]);
                               }}
                           >
                               <img
@@ -92,7 +104,7 @@ const App = () => {
                               }`}
                               onClick={() => {
                                   setAddressOption("pair-address");
-                                  setAddressData(pairAddress);
+                                  setAddressData([...pairAddress]);
                               }}
                           >
                               <img
@@ -131,7 +143,7 @@ const App = () => {
                               value={searchQuery}
                               onChange={(e) => setSearchQuery(e.target.value)}
                           />
-                          <span className='search-svg   ' onClick={handleSearch}><img src={SearchSvg} alt='search svg' /></span>
+                          <span className='search-svg' onClick={handleSearch}><img src={SearchSvg} alt='search svg' /></span>
                       </div>
                       <div className="connect">Connect</div>
                   </div>
@@ -144,7 +156,7 @@ const App = () => {
                           </h2>
                           <section className="results">
                               {addressData.map((el) => (
-                                  <div className="result">
+                                  <div className="result" key={el.pairAddress}>
                                       <a href={el.url}>
                                           <div className="card basic-info">
                                               <h3 className="title">
